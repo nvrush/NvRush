@@ -1,10 +1,11 @@
 # ✨ Codeotus
 
-The real Neovim-Ide that can change the way of coding with powerful features!
+**The battle-tested, Rust-focused IDE that actually works**  
+FOSS · Lightning-fast · Zero headaches
 
 ---
 
-## Take a look ....
+## 🌄 Take a look ....
 ![IMG_20251213_145632](https://github.com/user-attachments/assets/f0cafcf7-5e85-426e-b689-8b0e13a1b101)
 ![IMG_20251213_142322](https://github.com/user-attachments/assets/448f5763-c4c7-4157-9d70-48baae2b0dad)
 ![IMG_20251213_144538](https://github.com/user-attachments/assets/2a345bc7-32eb-4692-ae71-45f6cfc0938b)
@@ -22,123 +23,114 @@ The real Neovim-Ide that can change the way of coding with powerful features!
 
 </details>
 
-## 🎯 The Problems
+## 🎯 Built to solve real problems
 
-Are you frustrated of :
+**Tired of:**
+- Theme breakage and plugin conflicts that waste your day?
+- Lost sessions and endless nvim configuration rabbit holes?
+- IDE-hopping fatigue and subscription walls?
+- Nvim that's either too bare or too bloated?
+- Being chained to your desktop to code?
 
-- Broken themes & Plugin conflicts ?
-- Lost sessions & Configuring nvim steals time ?
-- Bored of changing Ides & Distros ?
-- Frustrated & Bored of Paying ?
-- Wants Nvim to be Ide or feeling slow moving ?
-- Wants to Code everywhere even on Phone ?
-
-And the most important :
-- Wants something that can make nvim Lazy but Smart  ?
-
-## ⚡ The Solution
-
-Then ofcourse you can take a look at Codeotus because we :
-
-- Eliminates the everyday chaos.
-- Provide Battle-tested and more human & human-designed Ide.
-- Give Fastest speed : Zero friction between thought and code (Takes about 2-3 seconds even on Snapdragon 4gen 1).
-- Give for all experience : Fully Termux Friendly (was built in Termux)!
-- Maximum yet minimal! 
+**Most importantly:** Want nvim that's lazy to configure but smart to use?
 
 ---
 
-## 🚀 Features
+## ⚡ The Codeotus difference
 
-**100 Themes** – Switch instantly. Rose Pine, Catppuccin, Gruvbox, and 97+ more.
+**Zero friction development**
+- 2-3 second startup even on Snapdragon 4 Gen 1
+- Battle-tested in production environments
+- Runs flawlessly on Termux (built there, actually)
 
-**Telepathic Navigation** – Harpoon Like Inbuilt plugin + Telescope + Oil. Find anything in seconds.
-
-**Memory Sessions** – Pick up exactly where you left off. Always.
-
-**Major LSP Ready** – C, C++, Go, Lua, TypeScript, PHP, Markdown, GDScript. Minutes to add more.
-
-**Auto Save in Normal** Auto saving in normal mode powering your Rust coding.
-
-**One Click Compile** Major language one clik compile with leader zz.
-
-**Define library flags at once & use Everywhere** This is quite more a Ide like thing and it allows you to add your required library flags for C or Cpp in user.config.IdeBatch.copiler_smart.lua & you directly be copiling your c & cpp fikes without the need to alias the flags.
-
-**Dual Completion** – nvim-cmp (stable) or blink-cmp (edge). Your choice 
-
-**No need to wander** No real need to wander around Ides if you can directly use a Universal Ide for your life time for free. 
-
-**Manageable** Every feature is a file and every file is feel to be edited. 
-
-**Version Lock** Most plugins are stable & version locked hence you will be getting quite less to no errors and even if you get just use ChatGpt to debug & Claude for programming the problamatic codes. 
-
-**Fast Solve** Since I am used to this Configuration I am actively maintaing it hence just raise your issue and I will be updating the Configuration.
-
-**Runs Everywhere** – Snapdragon 4 Gen 1? No problem.
+**Thoughtfully designed**
+- 105 curated themes, zero configuration chaos
+- Rust-first with stellar language support across the board
+- Maximum power, minimal complexity
 
 ---
 
-## ⚙️ Quick Start
+## 🚀 What you get
 
-```sh
+### **Core strengths**
+- **Rust excellence** – First-class Rust analyzer integration with instant error detection
+- **Universal compatibility** – Desktop to smartphone, no performance compromises
+- **Smart defaults** – Useful leader mappings that feel natural from day one
+- **Stable foundation** – Latest stable builds, rare breaking changes
+
+### **Developer experience**
+- Live diagnostics with intelligent error handling
+- Auto-save on `<Space>as` double-tap
+- Integrated terminal (`Ctrl+Space`) + Lazygit (`<Space>gg`)
+- Flash.nvim quick-jump and mini2D navigation
+- Oil + Telescope for blazing file navigation
+
+### **Project management**
+- Effortless session management (`<Space>ss/sf/sl/sd`)
+- Root-based project detection
+- Dual completion engines (nvim-cmp default)
+- AI-assisted configuration tweaking
+
+---
+
+## ⚙️ Get started in 30 seconds
+
+```bash
 mkdir -p ~/.config/nv && cd ~/.config/nv
 git clone https://github.com/Codeotus/Codeotus.git .
 NVIM_APPNAME=nv nvim
 ```
 
-**Alias it:**
-```sh
-echo "alias nv='NVIM_APPNAME=nv nvim'" >> ~/.bashrc
-source ~/.bashrc
+**Add the alias:**
+```bash
+# Bash
+echo "alias nv='NVIM_APPNAME=nv nvim'" >> ~/.bashrc && source ~/.bashrc
 
-echo "alias nv='NVIM_APPNAME=nv nvim'" >> ~/.zshrc
-source ~/.zshrc
+# Zsh
+echo "alias nv='NVIM_APPNAME=nv nvim'" >> ~/.zshrc && source ~/.zshrc
 ```
 
-Launch: `nv`
+**Launch:** `nv`
 
-**Uninstall:**
-```sh
-rm -rf ~/.config/nv/ ~/.local/share/nv/
-```
+**Uninstall:** `rm -rf ~/.config/nv/ ~/.local/share/nv/`
 
 ---
 
-## 🎨 What's Inside
+## 🎨 Architecture
 
-Every thing I could have thought of and amy nvim user wants : 
-
-- Popular Plugins Configured.
-- Smarter functioning.
-- Rare Ground breaking changes.
-- Easy global mappings.
-- Less complexity & chaos.
-
-
-**Space is your leader. Everything flows from there.**
+**Everything you need, nothing you don't:**
+- Carefully selected plugin ecosystem
+- Intelligent defaults with escape hatches
+- `<Space>` as leader – every command flows naturally
+- 7,000+ lines refined through real-world use
 
 ---
 
-## 🔧 Customize
+## 🔧 Extend it
 
-**Add Lsp** App Lsp insids : `./user/config/LspConfig/`
+**Add language servers:**  
+Drop configs in `./user/config/LspConfig/`
 
-**Add Snippets:** Drop JSON files in `./user/Snippets/`
+**Custom snippets:**  
+Add JSON files to `./user/Snippets/`
+
+It's your editor. Make it yours.
 
 ---
 
-## 💎 The Reality
+## 💎 The story
 
-One developer. Real projects. Daily use. No corporate backing.
+One developer. Real projects. Daily driver.  
+No VC funding. No corporate agenda.
 
-7,000 lines refined over months. It works because it has to working for me !
+Built because the alternatives either broke constantly or charged monthly. Refined over months of production use. **It works because it has to.**
 
 ---
 
 ## 📜 License
 
-MIT. Use it. Fork it. Own it.
+MIT – Use it, fork it, sell it, whatever.
 
 ---
 
-**Star it if it helps. Fork it if it doesn't.** ⭐
+### Star it if it saves you time. Fork it if it doesn't. ⭐
