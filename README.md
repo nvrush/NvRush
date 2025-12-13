@@ -1,6 +1,6 @@
 # ✨ Codeotus
 
-> The real Neovim-Ide that can change the way of coding.
+The real Neovim-Ide that can change the way of coding with powerful features!
 
 ---
 
@@ -90,6 +90,9 @@ NVIM_APPNAME=nv nvim
 ```sh
 echo "alias nv='NVIM_APPNAME=nv nvim'" >> ~/.bashrc
 source ~/.bashrc
+
+echo "alias nv='NVIM_APPNAME=nv nvim'" >> ~/.zshrc
+source ~/.zshrc
 ```
 
 Launch: `nv`
