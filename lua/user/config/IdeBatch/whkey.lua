@@ -264,27 +264,14 @@ wk.add({
     -- Quit
     -- ===============
     -- Quit & Save
-    { "<leader>q",    group = "Quit & Save" },
+    { "<leader>q",    group = "Quit" },
 
-    -- Quick saves
-    { "<leader>qs",   "<Cmd>w<CR>",                              desc = "Save" },
-    { "<leader>qS",   "<Cmd>wa<CR>",                             desc = "Save All" },
-    { "<leader>qf",   "<Cmd>w!<CR>",                             desc = "Force Save" },
-    { "<leader>qF",   "<Cmd>wall<CR>",                           desc = "Force Save All" },
-
-    -- Quit current
     { "<leader>qq",   "<Cmd>q<CR>",                              desc = "Quit" },
-    { "<leader>qQ",   "<Cmd>q!<CR>",                             desc = "Force Quit" },
+    { "<leader>qf",   group = "Force Quit" },
+    { "<leader>qfq",  "<Cmd>q!<CR>",                             desc = "Force Quit" },
+    { "<leader>qfa",  "<Cmd>qa<CR>",                             desc = "Force Quit All" },
+    { "<leader>qfw",  "<Cmd>qa!<CR>",                            desc = "Force Quit All" },
 
-    -- Quit all
-    { "<leader>qa",   "<Cmd>qa<CR>",                             desc = "Quit All" },
-    { "<leader>qA",   "<Cmd>qa!<CR>",                            desc = "Force Quit All" },
-
-    -- Save and quit
-    { "<leader>qw",   "<Cmd>wq<CR>",                             desc = "Save & Quit" },
-    { "<leader>qW",   "<Cmd>wq!<CR>",                            desc = "Force Save & Quit" },
-    { "<leader>qx",   "<Cmd>wqa<CR>",                            desc = "Save All & Quit" },
-    { "<leader>qX",   "<Cmd>wqa!<CR>",                           desc = "Force Save All & Quit" },
     -- ===============
     -- Replace/Substitute
     -- ===============
@@ -329,10 +316,14 @@ wk.add({
     -- Save
     -- ===============
     { "<leader>w",    group = "Save" },
-    { "<leader>ws",   "<cmd>w<cr>",                              desc = "Just Save" },
-    { "<leader>wa",   "<cmd>wall<cr>",                           desc = "Just Save all" },
-    { "<leader>wq",   "<cmd>q<cr>",                              desc = "Formal Quit" },
-    { "<leader>we",   "<cmd>qall<cr>",                           desc = "Force Quit" },
+    { "<leader>wq",   "<Cmd>wq<CR>",                             desc = "Save & Quit current buffer" },
+    { "<leader>ws",   "<cmd>wall<cr>",                           desc = "Save all" },
+
+    { "<leader>wf",   group = "Force save" },
+
+    { "<leader>wfs",  "<cmd>w!<cr>",                             desc = "Force save" },
+    { "<leader>wfS",  "<cmd>wall!<cr>",                          desc = "Force Save all" },
+    { "<leader>wfa",  "<cmd>wqall!<cr>",                         desc = "Forece Save & Quit all" },
     -- ===============
     -- Yank
     -- ===============
