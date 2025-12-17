@@ -152,11 +152,12 @@ local function apply_cmp_config()
         sources = cmp.config.sources({
             { name = 'nvim_lsp', priority = 1000, max_item_count = 30 }, -- ✅ Increased
             { name = 'luasnip',  priority = 750,  max_item_count = 15 }, -- ✅ Increased
+            { name = 'path',     priority = 500,  max_item_count = 15 }, -- ✅ Increased
             { name = 'nvim_lua', priority = 700,  max_item_count = 15 }, -- ✅ Increased
         }, {
             {
                 name = 'buffer',
-                priority = 500,
+                priority = 200,
                 max_item_count = 20, -- ✅ Increased
                 option = {
                     get_bufnrs = function()
@@ -164,7 +165,6 @@ local function apply_cmp_config()
                     end
                 }
             },
-            { name = 'path', priority = 300, max_item_count = 15 }, -- ✅ Increased
         }),
 
         -- Performance optimizations - ALLOW MORE ITEMS TO BE LOADED
