@@ -115,28 +115,44 @@ require("lazy").setup({
         { "stevearc/resession.nvim",             version = "v1.2.1" },
         { "ahmedkhalf/project.nvim" },
         { "mrcjkb/rustaceanvim" },
+        {
+            "monkoose/neocodeium",
+            event = "VeryLazy",
+            config = function()
+                local neocodeium = require("neocodeium")
+                neocodeium.setup()
+
+                -- Optional: Set up keymaps
+                vim.keymap.set("i", "<A-f>", neocodeium.accept)
+                vim.keymap.set("i", "<A-w>", neocodeium.accept_word)
+                vim.keymap.set("i", "<A-l>", neocodeium.accept_line)
+                vim.keymap.set("i", "<A-n>", neocodeium.cycle_or_complete)
+                vim.keymap.set("i", "<A-p>", function() neocodeium.cycle_or_complete(-1) end)
+                vim.keymap.set("i", "<A-c>", neocodeium.clear)
+            end,
+        },
 
         -- =========================
         -- Daily usefull
         -- =========================
-        { "folke/which-key.nvim",                event = "VeryLazy",                     version = "v3.17.0" },
-        { "karb94/neoscroll.nvim",               config = true,                          version = "0.2.0" },
-        { "mg979/vim-visual-multi",              branch = "master", },
-        { "numToStr/Comment.nvim",               version = "v0.8.0" },
+        { "folke/which-key.nvim",          event = "VeryLazy", version = "v3.17.0" },
+        { "karb94/neoscroll.nvim",         config = true,      version = "0.2.0" },
+        { "mg979/vim-visual-multi",        branch = "master", },
+        { "numToStr/Comment.nvim",         version = "v0.8.0" },
         { "kdheepak/lazygit.nvim" },
-        { "echasnovski/mini.nvim",               version = "*" },
+        { "echasnovski/mini.nvim",         version = "*" },
         { "nvzone/showkeys" },
-        { "folke/flash.nvim",                    event = "VeryLazy",                     version = "v2.1.0" },
+        { "folke/flash.nvim",              event = "VeryLazy", version = "v2.1.0" },
         { "mbbill/undotree" },
         { "gbprod/yanky.nvim" },
         { "CRAG666/code_runner.nvim" },
-        { "okuuva/auto-save.nvim",               cmd = "ASToggle" },
+        { "okuuva/auto-save.nvim",         cmd = "ASToggle" },
 
         -- =========================
         -- File Search
         -- =========================
-        { "nvim-telescope/telescope.nvim",       tag = "0.1.5" },
-        { "nvim-neo-tree/neo-tree.nvim",         branch = "main" },
+        { "nvim-telescope/telescope.nvim", tag = "0.1.5" },
+        { "nvim-neo-tree/neo-tree.nvim",   branch = "main" },
         { "leath-dub/snipe.nvim" },
         { "otavioschwanck/arrow.nvim", },
         {
