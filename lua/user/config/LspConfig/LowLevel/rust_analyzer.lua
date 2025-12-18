@@ -1,5 +1,6 @@
 local lspconfig = require("lspconfig")
 
+
 lspconfig.rust_analyzer.setup({
     flags = {
         allow_incremental_sync = true,

@@ -6,7 +6,7 @@
 -- ====================
 require('blink.cmp').setup({
     appearance = {
-        use_nvim_cmp_as_default = true,
+        use_nvim_cmp_as_default = false,
         nerd_font_variant = 'mono'
     },
 
@@ -32,10 +32,26 @@ require('blink.cmp').setup({
         },
 
         documentation = {
-            auto_show = false, -- Docs OFF by default
-            auto_show_delay_ms = 500,
+            auto_show = true,
+            auto_show_delay_ms = 0,
+            treesitter_highlighting = true,
+
             window = {
-                border = 'rounded',
+                max_width = 50,
+                max_height = 12,
+                scrollbar = true,
+
+                -- Force to right side only (good for vertical splits)
+                direction_priority = {
+                    menu_north = { 'e' }, -- east (right)
+                    menu_south = { 'e' },
+                },
+
+                -- Or force below menu (good for wide screens)
+                -- direction_priority = {
+                --     menu_north = { 'n' }, -- north (above)
+                --     menu_south = { 's' }, -- south (below)
+                -- },
             },
         },
 
@@ -66,8 +82,8 @@ require('blink.cmp').setup({
         ['<CR>'] = { 'accept', 'fallback' },
         ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
         ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' }, -- Scroll docs up
-        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' }, -- Scroll docs down
+        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },   -- Scroll docs up
+        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' }, -- Scroll docs down
     },
 
 
