@@ -64,15 +64,6 @@ require('blink.cmp').setup({
         default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
 
-    -- keymap = {
-    --     preset = 'default',
-    --     ['<C-space>'] = { 'show', 'show_documentation' }, -- Manually trigger docs
-    --     ['<C-e>'] = { 'hide', 'hide_documentation' },
-    --     ['<CR>'] = { 'accept', 'fallback' },
-    --     ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-    --     ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-    -- },
-
 
     keymap = {
         preset = 'default',
@@ -88,20 +79,30 @@ require('blink.cmp').setup({
 
 
     signature = {
-        enabled = true,
+        enabled = false,
     },
 })
 
 -- ====================
 -- 2. LSP CAPABILITIES
 -- ====================
-local capabilities = require('blink.cmp').get_lsp_capabilities()
+--  For blink-cmp Uncomment this :
+local blink_capabilities = require('blink.cmp').get_lsp_capabilities()
 
-capabilities.textDocument.completion.completionItem = {
+-- Enable maximum snippet support
+blink_capabilities.textDocument.completion.completionItem = {
     snippetSupport = true,
     resolveSupport = {
-        properties = { 'documentation', 'detail', 'additionalTextEdits' }
+        properties = {
+            'documentation',
+            'detail',
+            'additionalTextEdits',
+        }
     },
     insertReplaceSupport = true,
     labelDetailsSupport = true,
+    commitCharactersSupport = true,
+    documentationFormat = { 'markdown', 'plaintext' },
+    deprecatedSupport = true,
+    preselectSupport = true,
 }
