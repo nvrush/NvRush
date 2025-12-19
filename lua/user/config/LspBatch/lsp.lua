@@ -49,19 +49,45 @@ blink_capabilities.textDocument.completion.completionItem = {
     preselectSupport = true,
 }
 
+-- vim.lsp.handlers["textDocument/signatureHelp"] = function() end
+-- vim.lsp.handlers["textDocument/documentHighlight"] = function() end
+
 local servers = {
     --  Don't add anything here go to lua/user/config/LspConfig/ & make a file there or edit existing
 }
 vim.lsp.enable(vim.tbl_keys(servers))
-vim.keymap.set("n", "<leader>la", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
+-- Set global border style for LSP floating windows
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+        border = "rounded",
+        max_width = 80,
+        max_height = 20,
+    }
+)
 
--- Add manual keybind (optional - trigger with <C-k> in insert mode)
-vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Help" })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help, {
+        border = "rounded",
+        max_width = 80,
+        max_height = 20,
+    }
+)
 
+-- Set default border for all floating windows
+vim.diagnostic.config({
+    float = {
+        border = "rounded",
+        max_width = 80,
+        max_height = 20,
+    }
+})
 
--- -- Also add borders to diagnostic floating windows
--- vim.diagnostic.config({
---     float = {
---         border = "rounded",
---     },
--- })
+-- Global border style (affects other floating windows too)
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or "rounded"
+    opts.max_width = opts.max_width or 80
+    opts.max_height = opts.max_height or 20
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
