@@ -1,0 +1,11 @@
+vim.keymap.set("n", "<C-s>", function()
+    vim.cmd("wa")
+    vim.cmd("noh")
+    vim.cmd("echo 'Saved everything'")
+end)
+
+vim.keymap.set("n", "<C-q>", function()
+    vim.cmd("qa!")
+    vim.cmd("noh")
+    vim.cmd("echo 'Force quit everything'")
+end)

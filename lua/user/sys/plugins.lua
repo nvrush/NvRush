@@ -79,7 +79,7 @@ require("lazy").setup({
         { "stevearc/dressing.nvim",              version = "v3.1.1", },
         { "beauwilliams/focus.nvim",             version = "v1.0.2", },
         { "rcarriga/nvim-notify",                version = "v3.15.0", },
-        { "nvim-treesitter/nvim-treesitter",     build = ":TSUpdate",                    branch = "main" },
+        { "nvim-treesitter/nvim-treesitter",     build = ":TSUpdate",                    branch = "master",                       version = "42fc28b" },
         { "lukas-reineke/indent-blankline.nvim", main = "ibl",                           event = { "BufReadPost", "BufNewFile" }, version = "v3.9.0", },
         { "akinsho/bufferline.nvim",             version = "v4.9.1",                     event = "VeryLazy", },
         { "nvim-tree/nvim-tree.lua",             version = "v1.14.0", },
@@ -166,6 +166,8 @@ require("lazy").setup({
         -- =========================
         -- Colorscheme
         -- =========================
+        -- top-picks :
+        -- ellisonleao
         { "ellisonleao/gruvbox.nvim",    name = "gruvbox-ellison" },
         { "projekt0n/github-nvim-theme", name = "github-theme" },
         { "catppuccin/nvim",             name = "catppuccin" },
@@ -176,6 +178,8 @@ require("lazy").setup({
         { "sainnhe/gruvbox-material",    name = "gruvbox-material-sainnhe" },
         { "ribru17/bamboo.nvim",         name = "bamboo" },
         { "olimorris/onedarkpro.nvim",   priority = 1000, },
+        { "oxfist/night-owl.nvim" },
+        { "mellow-theme/mellow.nvim" },
 
         -- NOTE: STAY BEHIND THIS !
     },               -- NOTE: Closing brace for spec table!!!!!!
@@ -195,7 +199,6 @@ require("lazy").setup({
     install = {
         missing = true,
     },
-
     checker = {
         enabled = false,  -- Not needed for Codeotus
         notify = false,   -- Keep notifications off

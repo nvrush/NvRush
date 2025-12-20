@@ -22,6 +22,8 @@ end
 -- 1. System core override
 -- ============= ============= ============= =============
 safe_require("user._ui._core._itallic0")
+safe_require("user.sys.directMap.quit_save")
+safe_require("user.sys.directMap.buf_cycle")
 safe_require("user.sys.plugins")
 
 -- ============= ============= ============= =============

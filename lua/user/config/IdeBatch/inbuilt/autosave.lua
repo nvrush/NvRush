@@ -6,20 +6,20 @@ local M = {}
 -- Default configuration
 M.config = {
     enabled = true,
-    allow = { "all" },       -- {"rust", "python", "lua"} or {"all"}
+    allow = { "all" },         -- {"rust", "python", "lua"} or {"all"}
     disallow = { "c", "cpp" }, -- Disallowed by default
-    speed = 100,             -- Delay in milliseconds (0 for instant)
-    mode = "n",              -- normal mode only
+    speed = 100,               -- Delay in milliseconds (0 for instant)
+    mode = "n",                -- normal mode only
 
     -- Advanced options
-    format_on_save = true,     -- Trigger formatting (Conform/LSP)
-    reload_diagnostics = true, -- Reload diagnostics after save
-    debounce = true,           -- Use debouncing to avoid excessive saves
-    notify = false,            -- Show notification on autosave
+    format_on_save = true,       -- Trigger formatting (Conform/LSP)
+    reload_diagnostics = true,   -- Reload diagnostics after save
+    debounce = true,             -- Use debouncing to avoid excessive saves
+    notify = false,              -- Show notification on autosave
     exclude_ft_from_format = {}, -- Filetypes to skip formatting: {"markdown", "text"}
 
     -- Integration settings
-    use_conform = true,  -- Use conform.nvim if available
+    use_conform = true,    -- Use conform.nvim if available
     use_lsp_format = true, -- Fallback to LSP formatting
 }
 
@@ -326,7 +326,12 @@ function M.setup(opts)
     vim.api.nvim_create_user_command("AutosaveToggleNotify", M.toggle_notify, {})
 
     -- Setup keybindings
-    vim.keymap.set("n", "<leader>ab", M.toggle, {
+    vim.keymap.set("n", "U", M.toggle, {
+        desc = "Toggle Autosave",
+        silent = true
+    })
+
+    vim.keymap.set("n", "<leader>as", M.toggle, {
         desc = "Toggle Autosave",
         silent = true
     })
