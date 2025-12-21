@@ -1,20 +1,3 @@
--- vim.opt.foldmethod = 'expr'
--- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
--- vim.opt.foldlevelstart = 0
--- vim.opt.foldenable = true
-
-vim.opt.fillchars = { fold = " " }
-vim.opt.foldmethod = "indent"
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99
-
--- ============================
--- Neovim Init File
--- ============================
-
--- ----------------------------
--- Safe Require Helper
--- ----------------------------
 local function safe_require(module)
     local ok, result = pcall(require, module)
     if not ok then
@@ -27,7 +10,8 @@ local function safe_require(module)
     end
     return result
 end
-
+-- Use :SGT
+vim.cmd.colorscheme("gruvbox")
 -- ============= ============= ============= =============
 -- 1. System core override
 -- ============= ============= ============= =============
@@ -37,11 +21,11 @@ safe_require("user.sys.directMap.buf_cycle")
 safe_require("user.sys.plugins")
 
 -- ============= ============= ============= =============
--- 1. Inbuilt core
+-- 2. Inbuilt core
 -- ============= ============= ============= =============
 safe_require("user.sys.inbuilt.last_pos")
 -- ============= ============= ============= =============
--- 1. BASIC SETTINGS CORE
+-- 3. BASIC SETTINGS CORE
 -- ============= ============= ============= =============
 safe_require("user.sys.env")
 safe_require("user.sys.options")
@@ -50,13 +34,8 @@ safe_require("user.sys.autoreload")
 safe_require("user.sys.utilities")
 safe_require("user.sys.mason")
 -- ============= ============= ============= =============
--- 1. BASIC SETTINGS CORE
+--  4. ui CORE (Overridden)
 -- ============= ============= ============= =============
-
--- ============= ============= ============= =============
---  2. ui CORE (Overridden)
--- ============= ============= ============= =============
-
 safe_require("user._ui._core._dashboard")
 safe_require("user._ui._core._diagonasticsigns")
 safe_require("user._ui._core._ibl")
@@ -67,97 +46,71 @@ safe_require("user._ui._core._windows")
 safe_require("user._ui._core._sgt")
 safe_require("user._ui._core._notify")
 safe_require("user._ui._core._ascii")
-
 -- ============= ============= ============= =============
---  2. Custom treesitter
+--  5. Custom treesitter
 -- ============= ============= ============= =============
-
 safe_require("user._ui._customts.ts_file_call")
 safe_require("user._ui._customts.gruvbox_ts")
-
-
 -- ============= ============= ============= =============
---  2. Cherry on top
+--  6. Cherry on top
 -- ============= ============= ============= =============
 safe_require("user._ui.cherry.custom_treesitters")
 safe_require("user._ui.cherry.gitsigns")
--- safe_require("user._ui.cherry.snacks") backup only for mini.notify
--- safe_require("user._ui.cherry.bold_text")
--- safe_require("user._ui.cherry.noice")
 safe_require("user._ui.cherry.theme")
 safe_require("user._ui.cherry.colors")
-
 -- ============= ============= ============= =============
--- 3. Mini Eco_system
+-- 7. Mini Eco_system
 -- ============= ============= ============= =============
 safe_require("user.ecosys.mini.mini_surround")
 safe_require("user.ecosys.mini.mini_notify")
 safe_require("user.ecosys.mini.mini_icons")
 safe_require("user.ecosys.mini.mini_animate")
 safe_require("user.ecosys.mini.mini_jump")
-
-
 -- ============= ============= ============= =============
--- 4. LspConfig Setup
+-- 8. LspConfig Setup
 -- ============= ============= ============= =============
-
 -- HighLevel
 safe_require("user.config.LspConfig.HighLevel.lua_ls")
 safe_require("user.config.LspConfig.HighLevel.pyright")
-
 -- LowLevel
 safe_require("user.config.LspConfig.LowLevel.asm")
 safe_require("user.config.LspConfig.LowLevel.clang")
 safe_require("user.config.LspConfig.LowLevel.cmake")
 safe_require("user.config.LspConfig.LowLevel.rust_analyzer")
 safe_require("user.config.LspConfig.LowLevel.zls")
-
 -- Productive
 safe_require("user.config.LspConfig.Productive.bash_ls")
 safe_require("user.config.LspConfig.Productive.marksman")
 safe_require("user.config.LspConfig.Productive.vimls")
-
 -- Utilities
 safe_require("user.config.LspConfig.Utilities.dockerls")
 safe_require("user.config.LspConfig.Utilities.jsonls")
 safe_require("user.config.LspConfig.Utilities.yamlls")
-
 -- Web
 safe_require("user.config.LspConfig.Web.css_ls")
 safe_require("user.config.LspConfig.Web.gopls")
 safe_require("user.config.LspConfig.Web.html")
 safe_require("user.config.LspConfig.Web.phpactor")
 safe_require("user.config.LspConfig.Web.vtsls")
-
 -- Activate Them all --
 safe_require("user.config.LspBatch.lsp")
 -- ============= ============= ============= =============
--- 5. LspBatch Setup
+-- 9. LspBatch Setup
 -- ============= ============= ============= =============
--- safe_require("user.config.LspBatch.cmp") -- Comment this for blink completion
-
---[[
---]]
-safe_require("user.config.LspBatch.cmd_cmp")  -- Comment this if using nvim completion
-safe_require("user.config.LspBatch.blinkCmp") -- Comment this if using nvim completion
-
+safe_require("user.config.LspBatch.blinkCmp")
 safe_require("user.config.LspBatch.goto_preview")
 safe_require("user.config.LspBatch.autopairs")
 safe_require("user.config.LspBatch.formatter")
 safe_require("user.config.LspBatch.luasnip")
 safe_require("user.config.LspBatch.lspkind")
 safe_require("user.config.LspBatch.navic")
-
-
+-- Dap Setup
 safe_require("user.config.Dap.setup")
 safe_require("user.config.Dap.keymaps")
-
 safe_require("user.config.Dap.langs.rust")
-
 -- ============= ============= ============= =============
--- 5. LspBatch Setup
+-- 10. LspBatch Setup
 -- ============= ============= ============= =============
-
 safe_require("user.config.IdeBatch.code_runner_on_click")
 safe_require("user.config.IdeBatch.nvimtree")
 safe_require("user.config.IdeBatch.telescope")
@@ -182,31 +135,12 @@ safe_require("user.config.IdeBatch.yanky")
 safe_require("user.config.IdeBatch.oil")
 safe_require("user.config.IdeBatch.file_organizer_setup")
 safe_require("user.config.IdeBatch.fold")
-
 -- ============= ============= ============= =============
--- 4. Call the Inbuilt
+-- 11. Call the Inbuilt
 -- ============= ============= ============= =============
-
 safe_require("user.config.IdeBatch.call.autosave")
 safe_require("user.config.IdeBatch.call.notific")
-
 -- ============= ============= ============= =============
--- 4. PluginExtensionConfiguration
+-- 12. PluginExtensionConfiguration
 -- ============= ============= ============= =============
 safe_require("user.other.extconfig.overseer")
-
-
--- ============= ============= ============= =============
--- 6. Custom Cmp
--- ============= ============= ============= =============
-
--- NOTE: IS CURRENTLY IN NON-PRODUCTION READY BUT WORKING STATE !
-
--- safe_require("user._other._cmp.cmp-gd")
-
-
--- ============= ============= ============= ============= =============
--- Load the colorscheme at last !
--- ============= ============= ============= ============= =============
--- NOTE: SGT colorsheme_name will override
-vim.cmd.colorscheme("nightfox")

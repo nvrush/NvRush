@@ -46,12 +46,6 @@ require('blink.cmp').setup({
                     menu_north = { 'e' }, -- east (right)
                     menu_south = { 'e' },
                 },
-
-                -- Or force below menu (good for wide screens)
-                -- direction_priority = {
-                --     menu_north = { 'n' }, -- north (above)
-                --     menu_south = { 's' }, -- south (below)
-                -- },
             },
         },
 
@@ -81,6 +75,47 @@ require('blink.cmp').setup({
     signature = {
         enabled = false,
     },
+    cmdline = {
+        enabled = true,
+        -- use 'inherit' to inherit mappings from top level `keymap` config
+        keymap = { preset = 'cmdline' },
+        sources = { 'buffer', 'cmdline' },
+        completion = {
+            trigger = {
+                show_on_blocked_trigger_characters = {},
+                show_on_x_blocked_trigger_characters = {},
+            },
+            list = {
+                selection = {
+                    preselect = true,
+                    auto_insert = true,
+                },
+            },
+            menu = {
+                auto_show = true
+            },
+            ghost_text = { enabled = true },
+        }
+    },
+    term = {
+        enabled = true,
+        keymap = { preset = 'inherit' },
+        sources = {},
+        completion = {
+            trigger = {
+                show_on_blocked_trigger_characters = {},
+                show_on_x_blocked_trigger_characters = nil,
+            },
+            list = {
+                selection = {
+                    preselect = nil,
+                    auto_insert = nil,
+                },
+            },
+            menu = { auto_show = nil },
+            ghost_text = { enabled = nil },
+        }
+    }
 })
 
 -- ====================
