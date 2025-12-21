@@ -23,7 +23,7 @@ require("project_nvim").setup({
         "CMakeLists.txt",
     },
 
-    silent_chdir = true,   -- Clean, no spam
+    silent_chdir = true, -- Clean, no spam
     show_hidden = false,
     scope_chdir = 'global',
     datapath = vim.fn.stdpath("data"),
@@ -39,11 +39,16 @@ vim.keymap.set('n', '<leader>fp', '<cmd>Telescope projects<cr>',
     { desc = "Find Projects" })
 
 -- Manual root directory changes
-vim.keymap.set('n', '<leader>pa', function()
-    local project = require("project_nvim.project")
-    -- Add current directory as project root
+-- vim.keymap.set('n', '<leader>pa', function()
+--     local project = require("project_nvim.project")
+--     -- Add current directory as project root
+--     local cwd = vim.fn.getcwd()
+--     project.add_project(cwd)
+--     print("Added project: " .. cwd)
+-- end, { desc = "Add current dir as project" })
+vim.keymap.set("n", "<leader>pa", function()
     local cwd = vim.fn.getcwd()
-    project.add_project(cwd)
+    require("project_nvim").on_buf_enter()
     print("Added project: " .. cwd)
 end, { desc = "Add current dir as project" })
 
@@ -58,14 +63,22 @@ vim.keymap.set('n', '<leader>pc', function()
     end
 end, { desc = "Change to project (manual)" })
 
-vim.keymap.set('n', '<leader>pr', function()
-    -- Set current file's directory as project root
-    local project = require("project_nvim.project")
+-- vim.keymap.set('n', '<leader>pr', function()
+--     -- Set current file's directory as project root
+--     local project = require("project_nvim.project")
+--     local file_dir = vim.fn.expand("%:p:h")
+--     vim.cmd("cd " .. file_dir)
+--     project.add_project(file_dir)
+--     print("Set project root: " .. file_dir)
+-- end, { desc = "Set current file's dir as root" })
+
+
+vim.keymap.set("n", "<leader>pr", function()
     local file_dir = vim.fn.expand("%:p:h")
-    vim.cmd("cd " .. file_dir)
-    project.add_project(file_dir)
+    vim.cmd("cd " .. vim.fn.fnameescape(file_dir))
+    require("project_nvim").on_buf_enter()
     print("Set project root: " .. file_dir)
-end, { desc = "Set current file's dir as root" })
+end, { desc = "Set current file's dir as project root" })
 
 -- RESESSION WORKFLOW INTEGRATION
 

@@ -134,11 +134,18 @@ safe_require("user.config.LspBatch.lsp")
 safe_require("user.config.LspBatch.cmd_cmp")  -- Comment this if using nvim completion
 safe_require("user.config.LspBatch.blinkCmp") -- Comment this if using nvim completion
 
+safe_require("user.config.LspBatch.goto_preview")
 safe_require("user.config.LspBatch.autopairs")
 safe_require("user.config.LspBatch.formatter")
 safe_require("user.config.LspBatch.luasnip")
 safe_require("user.config.LspBatch.lspkind")
 safe_require("user.config.LspBatch.navic")
+
+
+safe_require("user.config.Dap.setup")
+safe_require("user.config.Dap.keymaps")
+
+safe_require("user.config.Dap.langs.rust")
 
 -- ============= ============= ============= =============
 -- 5. LspBatch Setup
@@ -194,4 +201,4 @@ safe_require("user.other.extconfig.overseer")
 -- Load the colorscheme at last !
 -- ============= ============= ============= ============= =============
 -- NOTE: SGT colorsheme_name will override
-vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("nightfox")

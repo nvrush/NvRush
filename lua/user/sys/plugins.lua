@@ -22,14 +22,13 @@ require("lazy").setup({
         -- ===========================
         -- Plugin Managers
         -- ===========================
-        { "mason-org/mason.nvim",           opts = {} },
-        { "williamboman/mason.nvim",        build = ":MasonUpdate", event = "VeryLazy", },
+        { "mason-org/mason.nvim",        opts = {} },
+        { "williamboman/mason.nvim",     build = ":MasonUpdate", event = "VeryLazy", },
         -- ===========================
         -- dependencies
         -- ===========================
         { "nvim-lua/plenary.nvim" },
         { "MunifTanjim/nui.nvim" },
-        { "theHamsta/nvim-dap-virtual-text" },
         { "rafamadriz/friendly-snippets" },
         { "stevearc/overseer.nvim" },
         {
@@ -49,7 +48,6 @@ require("lazy").setup({
         { "L3MON4D3/LuaSnip" },
         { "saadparwaiz1/cmp_luasnip" },
         { 'hrsh7th/cmp-cmdline' },
-        { "mfussenegger/nvim-dap" },
         { "nvim-neotest/nvim-nio" }, -- dependency
         { "nvim-lua/plenary.nvim" },
         { "hrsh7th/cmp-nvim-lsp" },
@@ -88,8 +86,6 @@ require("lazy").setup({
         { "kylechui/nvim-surround",              event = "VeryLazy",                     version = "v3.1.7",                      config = true },
         { "stevearc/conform.nvim",               event = "BufWritePre" },
         { "nvim-lualine/lualine.nvim" },
-        { "mfussenegger/nvim-dap" },
-        { "rcarriga/nvim-dap-ui" },
         { "goolord/alpha-nvim",                  event = "VimEnter", },
         { "MaximilianLloyd/ascii.nvim" },
 
@@ -104,15 +100,23 @@ require("lazy").setup({
         { "folke/todo-comments.nvim",            version = "v1.5.0" },
         { "ThePrimeagen/refactoring.nvim", },
         { "mfussenegger/nvim-dap",               version = "0.10.0" },
+        { "rcarriga/nvim-dap-ui" },
+        { "theHamsta/nvim-dap-virtual-text" },
         { "onsails/lspkind-nvim" },
         { "SmiteshP/nvim-navic",                 lazy = true },
 
         { "saghen/blink.cmp",                    version = "v1.8.0" },
+        {
+            "rmagatti/goto-preview",
+            dependencies = { "rmagatti/logger.nvim" },
+            event = "BufEnter",
+            config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+        },
 
         -- =========================
         -- Sessions & projects
         -- =========================
-        { "stevearc/resession.nvim",             version = "v1.2.1" },
+        { "stevearc/resession.nvim", version = "v1.2.1" },
         { "ahmedkhalf/project.nvim" },
         {
             "monkoose/neocodeium",
