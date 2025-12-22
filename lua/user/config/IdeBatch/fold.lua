@@ -29,6 +29,22 @@ vim.o.foldenable = true
 -- Using ufo provider needs a large value
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
+-- Save folds, cursor position, etc.
+vim.opt.viewoptions = { "folds", "cursor" }
+
+-- Where views are stored
+vim.opt.viewdir = vim.fn.stdpath("state") .. "/views"
+
+-- Save view when leaving a buffer
+vim.api.nvim_create_autocmd("BufWinLeave", {
+    pattern = "*",
+    command = "silent! mkview"
+})
+-- Load view when entering a buffer
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = "*",
+    command = "silent! loadview"
+})
 
 -- Don't map to za as za helps to toggle code folding.
 vim.keymap.set('n', "<leader>zo", "Code Fold", { desc = "Code Fold with ufo" })
