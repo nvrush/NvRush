@@ -4,12 +4,21 @@ local lspconfig = require("lspconfig")
 lspconfig.rust_analyzer.setup({
     flags = {
         allow_incremental_sync = true,
-        debounce_text_changes = 1000 -- Wait 150ms after typing stops
+        debounce_text_changes = 500 -- Wait 150ms after typing stops
     },
     settings = {
         ["rust-analyzer"] = {
+            rustc = {
+                source = "discover",
+            },
+            files = {
+                excludeDirs = { ".git", "target", "node_modules" }, -- Don't scan these
+            },
             cargo = {
-                allFeatures = true,
+                buildScripts = {
+                    enable = false,
+                },
+                allFeatures = false,
             },
             checkOnSave = {
                 enable = true,
@@ -17,11 +26,14 @@ lspconfig.rust_analyzer.setup({
             },
             procMacro = {
                 enable = true,
+                attribute = {
+                    enable = false,
+                },
             },
             diagnostics = {
                 enable = true,
                 experimental = {
-                    enable = true
+                    enable = false,
                 }
             },
         },
