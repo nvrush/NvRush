@@ -150,3 +150,10 @@ safe_require("user.config.IdeBatch.call.notific")
 safe_require("user.other.extconfig.overseer")
 
 vim.cmd.colorscheme("nightfox")
+
+vim.keymap.set('n', '<leader>tc', function()
+    require('telescope.builtin').find_files({
+        cwd = vim.fn.expand('$MYVIMRC'):match('(.*/)'), -- Gets directory of init.lua
+        prompt_title = '< Neovim Config >'
+    })
+end, { desc = 'Find config files' })
