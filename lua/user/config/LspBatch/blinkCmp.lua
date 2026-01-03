@@ -33,6 +33,7 @@ require('blink.cmp').setup({
                     { "kind_icon", "kind", gap = 1 }
                 },
             },
+            auto_show = true,
         },
 
         documentation = {
