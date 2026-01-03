@@ -4,7 +4,7 @@ local lspconfig = require("lspconfig")
 lspconfig.rust_analyzer.setup({
     flags = {
         allow_incremental_sync = true,
-        debounce_text_changes = 150 -- Wait 150ms after typing stops
+        debounce_text_changes = 1000 -- Wait 150ms after typing stops
     },
     settings = {
         ["rust-analyzer"] = {
@@ -27,3 +27,7 @@ lspconfig.rust_analyzer.setup({
         },
     },
 })
+
+vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, ctx)
+    return vim.NIL
+end
