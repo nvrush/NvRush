@@ -134,6 +134,7 @@ safe_require("user.config.IdeBatch.yanky")
 safe_require("user.config.IdeBatch.oil")
 safe_require("user.config.IdeBatch.file_organizer_setup")
 safe_require("user.config.IdeBatch.fold")
+safe_require("user.config.IdeBatch.hydra")
 -- ============= ============= ============= =============
 -- 11. Call the Inbuilt
 -- ============= ============= ============= =============
