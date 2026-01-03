@@ -10,6 +10,8 @@ local function safe_require(module)
     end
     return result
 end
+
+vim.lsp.set_log_level("warn") -- Only show warnings and errors, not info
 -- ============= ============= ============= =============
 -- 1. System core override
 -- ============= ============= ============= =============
@@ -95,7 +97,6 @@ safe_require("user.config.LspConfig.Web.vtsls")
 safe_require("user.config.LspConfig.GameDev.Godot_ls")
 -- Activate Them all --
 safe_require("user.config.LspBatch.lsp")
-safe_require("user.config.LspBatch.lsp_log")
 -- ============= ============= ============= =============
 -- 9. LspBatch Setup
 -- ============= ============= ============= =============
