@@ -196,7 +196,8 @@ local function autosave()
         if M.config.reload_diagnostics then
             vim.defer_fn(function()
                 vim.diagnostic.reset()
-                vim.lsp.buf.document_highlight()
+                -- Turn this off to prevent errors in Marksman or Godot
+                -- vim.lsp.buf.document_highlight()
             end, 50)
         end
 

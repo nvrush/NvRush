@@ -56,6 +56,7 @@ blink_capabilities.textDocument.completion.completionItem = {
 -- }
 -- vim.lsp.enable(vim.tbl_keys(servers))
 
+
 vim.lsp.handlers["textDocument/documentHighlight"] = function() end
 -- Set global border style for LSP floating windows
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
@@ -105,5 +106,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- H for signature help
         vim.keymap.set('n', 'H', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('i', '<C-h>', vim.lsp.buf.signature_help, opts) -- Also in insert mode
+    end,
+})
+
+-- 2. Disable document highlight for servers that don't support it
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+        if client then
+            -- Disable for marksman and gdscript
+            if client.name == "marksman" or client.name == "gdscript" then
+                client.server_capabilities.documentHighlightProvider = false
+            end
+        end
     end,
 })

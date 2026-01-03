@@ -91,8 +91,11 @@ safe_require("user.config.LspConfig.Web.gopls")
 safe_require("user.config.LspConfig.Web.html")
 safe_require("user.config.LspConfig.Web.phpactor")
 safe_require("user.config.LspConfig.Web.vtsls")
+-- GameDev
+safe_require("user.config.LspConfig.GameDev.Godot_ls")
 -- Activate Them all --
 safe_require("user.config.LspBatch.lsp")
+safe_require("user.config.LspBatch.lsp_log")
 -- ============= ============= ============= =============
 -- 9. LspBatch Setup
 -- ============= ============= ============= =============
