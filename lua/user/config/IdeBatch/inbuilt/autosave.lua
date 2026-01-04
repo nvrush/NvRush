@@ -6,10 +6,11 @@ local M = {}
 -- Default configuration
 M.config = {
     enabled = true,
-    allow = { "all" },         -- {"rust", "python", "lua"} or {"all"}
-    disallow = { "c", "cpp" }, -- Disallowed by default
-    speed = 100,               -- Delay in milliseconds (0 for instant)
-    mode = "n",                -- normal mode only
+    allow = { "all" }, -- {"rust", "python", "lua"} or {"all"}
+    disallow = {},     -- Disallowed by default
+    -- disallow = { "c", "cpp" }, -- Disallowed by default
+    speed = 100,       -- Delay in milliseconds (0 for instant)
+    mode = "n",        -- normal mode only
 
     -- Advanced options
     format_on_save = true,       -- Trigger formatting (Conform/LSP)

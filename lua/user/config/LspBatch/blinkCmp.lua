@@ -1,22 +1,55 @@
--- Minimal blink.cmp + LSP setup for maximum snippet expansion
+-- Minimal blink.cmp + LSP setup with beautiful icons
 -- Install: saghen/blink.cmp, neovim/nvim-lspconfig
-
 
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = false, bg = "NONE" })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = false, bg = "NONE" })
 vim.api.nvim_set_hl(0, "LspReferenceText", { underline = false, bg = "NONE" })
+
 -- ====================
 -- 1. BLINK.CMP SETUP
 -- ====================
 require('blink.cmp').setup({
     appearance = {
         use_nvim_cmp_as_default = false,
-        nerd_font_variant = 'mono'
+        nerd_font_variant = 'normal', -- Use 'normal' if you have regular Nerd Font
+
+        -- Beautiful custom icons
+        kind_icons = {
+            Text          = "󰰥",
+            Method        = "󰆧",
+            Function      = "󰯺",
+            Constructor   = "󰆧",
+
+            Field         = "󰜢",
+            Variable      = "󱃻",
+            Property      = "󰜢",
+            Constant      = "󰯷",
+
+            Class         = "󰠱",
+            Struct        = "󰙅",
+            Interface     = "󰕘",
+            Module        = "󰕳",
+            Unit          = "󰑭",
+            Value         = "󰎠",
+            Enum          = "󰕘",
+            EnumMember    = "󰆔",
+            TypeParameter = "󰰘",
+
+            Keyword       = "󰌋",
+            Operator      = "",
+            Snippet       = "",
+            Event         = "󰌘",
+            Reference     = "󰈇",
+
+            File          = "󰈙",
+            Folder        = "󰉋",
+            Color         = "󰏘",
+        }
     },
 
     completion = {
         list = {
-            max_items = 6, -- Show only 5-6 items
+            max_items = 200,
         },
 
         accept = {
@@ -26,11 +59,68 @@ require('blink.cmp').setup({
         },
 
         menu = {
+            enabled = true,
+            min_width = 15,
+            max_height = 10,
+            border = 'none',
             scrollbar = true,
+            scrolloff = 2,
+            winblend = 0, -- Transparency (0-100)
+
             draw = {
+                -- Add padding and gap for better spacing
+                padding = 1,
+                gap = 1,
+
+                -- Treesitter highlighting for prettier labels
+                treesitter = { 'lsp' },
+
                 columns = {
-                    { "label",     gap = 1 },
-                    { "kind_icon", "kind", gap = 1 }
+                    { "kind_icon", "kind",              gap = 1 }, -- Icon first, then kind name
+                    { "label",     "label_description", gap = 1 },
+                },
+
+                -- Custom component rendering (optional advanced customization)
+                components = {
+                    kind_icon = {
+                        ellipsis = false,
+                        text = function(ctx)
+                            return ctx.kind_icon .. ctx.icon_gap
+                        end,
+                        highlight = function(ctx)
+                            return { { group = ctx.kind_hl, priority = 20000 } }
+                        end,
+                    },
+
+                    kind = {
+                        width = { max = 20 },
+                        text = function(ctx) return ctx.kind end,
+                        highlight = function(ctx) return ctx.kind_hl end,
+                    },
+
+                    label = {
+                        width = { fill = true, max = 30 },
+                        text = function(ctx) return ctx.label .. ctx.label_detail end,
+                        highlight = function(ctx)
+                            local highlights = {
+                                { 0, #ctx.label, group = ctx.deprecated and 'BlinkCmpLabelDeprecated' or 'BlinkCmpLabel' },
+                            }
+                            if ctx.label_detail then
+                                table.insert(highlights,
+                                    { #ctx.label, #ctx.label + #ctx.label_detail, group = 'BlinkCmpLabelDetail' })
+                            end
+                            for _, idx in ipairs(ctx.label_matched_indices) do
+                                table.insert(highlights, { idx, idx + 1, group = 'BlinkCmpLabelMatch' })
+                            end
+                            return highlights
+                        end,
+                    },
+
+                    label_description = {
+                        width = { max = 30 },
+                        text = function(ctx) return ctx.label_description end,
+                        highlight = 'BlinkCmpLabelDescription',
+                    },
                 },
             },
             auto_show = true,
@@ -42,13 +132,15 @@ require('blink.cmp').setup({
             treesitter_highlighting = true,
 
             window = {
-                max_width = 50,
-                max_height = 12,
+                min_width = 10,
+                max_width = 60,
+                max_height = 20,
+                border = 'none', -- 'single', 'double', 'rounded', 'solid', 'shadow'
+                winblend = 0,
                 scrollbar = true,
 
-                -- Force to right side only (good for vertical splits)
                 direction_priority = {
-                    menu_north = { 'e' }, -- east (right)
+                    menu_north = { 'e' },
                     menu_south = { 'e' },
                 },
             },
@@ -63,49 +155,71 @@ require('blink.cmp').setup({
         default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
 
-
     keymap = {
         preset = 'default',
         ['<C-space>'] = { 'show', 'show_documentation' },
         ['<C-e>'] = { 'hide', 'hide_documentation' },
-        ['<C-k>'] = { 'show_documentation', 'hide_documentation' }, -- Toggle docs with Ctrl+k
+        ['<C-k>'] = { 'show_documentation', 'hide_documentation' },
         ['<CR>'] = { 'accept', 'fallback' },
         ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
         ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },   -- Scroll docs up
-        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' }, -- Scroll docs down
+        ['<C-n>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = { 'select_prev', 'fallback' },
+        ['<Down>'] = { 'select_next', 'fallback' },
+        ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
     },
-
 
     signature = {
         enabled = false,
     },
+
     cmdline = {
         enabled = true,
-        -- use 'inherit' to inherit mappings from top level `keymap` config
-        keymap = { preset = 'cmdline' },
-        sources = { 'buffer', 'cmdline' },
+        sources = { 'cmdline' },
+
+        keymap = {
+            preset = 'super-tab',
+            ['<CR>'] = { 'accept', 'fallback' },
+            ['<Tab>'] = { 'select_next', 'fallback' },
+            ['<S-Tab>'] = { 'select_prev', 'fallback' },
+            ['<C-n>'] = { 'select_next', 'fallback' },
+            ['<C-p>'] = { 'select_prev', 'fallback' },
+        },
+
         completion = {
             trigger = {
                 show_on_blocked_trigger_characters = {},
                 show_on_x_blocked_trigger_characters = {},
             },
+
             list = {
                 selection = {
                     preselect = true,
                     auto_insert = true,
                 },
             },
+
             menu = {
-                auto_show = true
+                auto_show = true,
+                draw = {
+                    columns = {
+                        { "label" }
+                    },
+                },
             },
-            ghost_text = { enabled = false },
+
+            ghost_text = {
+                enabled = false
+            },
         }
     },
+
     term = {
         enabled = true,
-        keymap = { preset = 'inherit' },
         sources = {},
+        keymap = { preset = 'inherit' },
         completion = {
             trigger = {
                 show_on_blocked_trigger_characters = {},
@@ -123,13 +237,8 @@ require('blink.cmp').setup({
     }
 })
 
--- ====================
--- 2. LSP CAPABILITIES
--- ====================
---  For blink-cmp Uncomment this :
 local blink_capabilities = require('blink.cmp').get_lsp_capabilities()
 
--- Enable maximum snippet support
 blink_capabilities.textDocument.completion.completionItem = {
     snippetSupport = true,
     resolveSupport = {
