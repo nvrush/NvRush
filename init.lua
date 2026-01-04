@@ -32,7 +32,6 @@ safe_require("user.sys.env")
 safe_require("user.sys.options")
 safe_require("user.sys.mappings")
 safe_require("user.sys.autoreload")
-safe_require("user.sys.utilities")
 safe_require("user.sys.mason")
 -- ============= ============= ============= =============
 --  4. ui CORE (Overridden)
@@ -139,6 +138,8 @@ safe_require("user.config.IdeBatch.oil")
 safe_require("user.config.IdeBatch.file_organizer_setup")
 safe_require("user.config.IdeBatch.fold")
 safe_require("user.config.IdeBatch.hydra")
+safe_require("user.sys.copy_to_sys")
+
 -- ============= ============= ============= =============
 -- 11. Call the Inbuilt
 -- ============= ============= ============= =============
@@ -150,7 +151,7 @@ safe_require("user.config.IdeBatch.call.notific")
 safe_require("user.other.extconfig.overseer")
 
 vim.cmd.colorscheme("nightfox")
-
+-- Keep as it plugins
 vim.keymap.set('n', '<leader>tc', function()
     require('telescope.builtin').find_files({
         cwd = vim.fn.expand('$MYVIMRC'):match('(.*/)'), -- Gets directory of init.lua
